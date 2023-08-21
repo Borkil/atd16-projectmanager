@@ -1,15 +1,30 @@
-import Image from 'next/image'
+import CenterSection from "@/components/centerSection/CenterSection.jsx"
 
-export default function Home() {
+async function getData(){
+  const res = await fetch('http://atd16-api.test/api/tasks', {cache: 'no-store'})
+  if(!res.ok){
+    throw new error('Failed to fetch data')
+  }
+  return res.json()
+}
+
+
+export default async function Home() {
+  const data = await getData()
+  
   return (
     <main className="flex flex-col h-screen">
-      <header className='bg-slate-200'>je suis le header</header>
-      <div className='bg-slate-600 flex justify-between h-full '>
-        <nav className='bg-red-200'>je suis la sidebar a gauche</nav>
-        <section className='bg-green-200 basis-full'>je suis la section centrale</section>
-        <div className='bg-orange-200 '>je suis la sidebar a droite</div>
+      <header className="bg-slate-200">je suis le header</header>
+
+      <div className="bg-slate-600 flex ">
+
+        <nav className="bg-red-200">je suis la sidebar a gauche</nav>
+
+
+        <CenterSection data={data}/>
+
+        
       </div>
-      
     </main>
-  )
+  );
 }
