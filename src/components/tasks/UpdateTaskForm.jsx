@@ -1,9 +1,15 @@
 "use client";
 
 import { Router, useRouter } from "next/navigation";
+import { useState } from "react";
+import InputText from "../global/InputText.jsx";
 
-export default function TaskForm() {
+// task => se sont les données d'une tache
+export default function AddTaskForm({task}) {
+  const [name, setName] = useState(task.name)
+   
   const router = useRouter()
+  //cette fonction permet de mettre a jour une tache en bdd
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -14,34 +20,31 @@ export default function TaskForm() {
       status: "en cours",
     };
 
-    console.log(data);
     const JSONdata = JSON.stringify(data);
-    console.log(JSONdata);
 
     const options = {
-      method: "POST",
+      method: "PUT",
       body: JSONdata,
       headers: {
         "Content-Type": "application/json;charset=UTF-8",
       },
     };
 
-    const response = await fetch("http://atd16-api.test/api/tasks", options);
+    const response = await fetch(`http://atd16-api.test/api/tasks/${task.id}`, options);
     if (response.ok) {
-      console.log("ok creer en bdd");
+      console.log("ok mis à jour en bdd");
       router.refresh()
     } else {
-      console.log("attention pas creer en bdd");
+      console.log("attention pas modifié en bdd");
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-sm">
-      <label htmlFor="name">Donnez un nom à la tâche</label>
-      <input type="text" id="name" name="name" />
+      <InputText name='name' defaultValue={name} onChange={e=>setName(e.target.value)}/>
       <label htmlFor="description">Description</label>
-      <input type="text" id="description" name="description" />
-      <button type="submit">Valider</button>
+      <textarea id="description" name="description" defaultValue={task.description}/>
+      <button type="submit">Modifier la tâche</button>
     </form>
   );
 }

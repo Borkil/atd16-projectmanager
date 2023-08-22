@@ -16,7 +16,7 @@ export default async function Home() {
     <main className="flex flex-col h-screen">
       <header className="bg-slate-200">je suis le header</header>
 
-      <div className="bg-slate-600 flex ">
+      <div className="flex ">
 
         <nav className="bg-red-200">je suis la sidebar a gauche</nav>
 
