@@ -10,15 +10,11 @@ import UpdateTaskForm from "../tasks/UpdateTaskForm.jsx"
 export default function RightSidebar ({isOpen, onClose, isEmpty, task}){``
   //par default la sidebar affichera un formulaire vide
 
-
   return(
-    <div className={!isOpen ? 'hidden' : 'block'}>
+    <div className={`${!isOpen ? 'hidden' : 'block'} drop-shadow-md bg-neutral-100 mr-2 my-2 w-1/2 rounded p-4`}>
       <button>Marquer comme terminées</button>
         {isEmpty ? <AddTaskForm/> : <UpdateTaskForm key={task.id} task={task}/>}
       <button onClick={onClose}>fermer la sidebar</button>
     </div>
   )
 }
-
-// si isEmpty = true alors on affiche un formulaire vide
-// si isEmpty = false alors on affiche un formulaire avec les informations de la tache 
