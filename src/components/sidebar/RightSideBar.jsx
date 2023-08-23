@@ -10,6 +10,7 @@ import UpdateTaskForm from "../tasks/UpdateTaskForm.jsx"
 export default function RightSidebar ({isOpen, onClose, isEmpty, task}){``
   //par default la sidebar affichera un formulaire vide
 
+
   return(
     <div className={!isOpen ? 'hidden' : 'block'}>
       <button>Marquer comme terminées</button>
