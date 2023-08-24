@@ -19,6 +19,7 @@ export default function RightSidebar({ isOpen, onClose, isEmpty, task }) {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter()
 
+  // Function qui permet de supprimer une tache en BDD
   const handleRemove = async () => {
     const options = {
       method: "DELETE"
@@ -40,19 +41,26 @@ export default function RightSidebar({ isOpen, onClose, isEmpty, task }) {
     }
   }
 
+  const uniqueId = Math.random()
+
   return (
     <div
       className={`
-    ${!isOpen ? "hidden" : "block"}
+    ${!isOpen ? "translate-x-96 opacity-0" : "translate-x-0 opacity-1"}
     drop-shadow-md
     bg-white
-    m-2
-    w-1/2
-    p-4
+    w-1/3
     rounded
     flex
     flex-col
     gap-4
+    transition-full
+    duration-500
+    absolute
+    right-0
+    top-0
+    h-full
+    p-4
     `}
     >
       <div className="flex justify-between">
@@ -63,8 +71,10 @@ export default function RightSidebar({ isOpen, onClose, isEmpty, task }) {
         </div>
       </div>
 
-      {isEmpty ? <AddTaskForm /> : <UpdateTaskForm key={task.id} task={task} />}
+      
+      {isEmpty ? <AddTaskForm onClose={onClose} key={uniqueId}/> : <UpdateTaskForm key={task.id} task={task} onClose={onClose}/>}
 
+      {/* Affiche la modale */}
       {showModal &&
         createPortal(
           <RemoveModal

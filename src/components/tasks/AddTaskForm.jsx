@@ -8,7 +8,7 @@ import { SubmitButton } from "../global/Buttons.jsx";
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'une tâche
 // task => se sont les données d'une tache
 
-export default function AddTaskForm() {
+export default function AddTaskForm({onClose}) {
   const router = useRouter();
   //cette fonction permet de creer une tache en bdd
   const handleSubmit = async (event) => {
@@ -31,6 +31,7 @@ export default function AddTaskForm() {
     };
 
     const response = await fetch("http://atd16-api.test/api/tasks", options);
+    onClose()
     if (response.ok) {
       console.log("ok creer en bdd");
       router.refresh();

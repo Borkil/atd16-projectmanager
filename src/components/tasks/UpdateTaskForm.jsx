@@ -7,7 +7,7 @@ import TextArea from "../global/TextArea.jsx";
 import { SubmitButton } from "../global/Buttons.jsx";
 
 // task => se sont les données d'une tache
-export default function AddTaskForm({ task }) {
+export default function AddTaskForm({ task, onClose }) {
   const [name, setName] = useState(task.name);
   const router = useRouter();
   

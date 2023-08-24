@@ -10,6 +10,10 @@ export default function CenterSection({ data }) {
   const [taskDetails, setTaskDetails] = useState(" ");
 
   const tasks = data["hydra:member"];
+  
+  const handleSidebarToggle = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
 
   const handleShowUpdateTaskForm = (task) => {
     setTaskDetails(task);
@@ -17,9 +21,6 @@ export default function CenterSection({ data }) {
     setIsEmpty(false);
   };
 
-  const handleSidebarToggle = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
   const handleShowAddForm = () => {
     setIsEmpty(true);
@@ -30,7 +31,7 @@ export default function CenterSection({ data }) {
   };
 
   return (
-    <section className="flex h-full w-full bg-neutral-50 rounded drop-shadow">
+    <section className="h-full w-full bg-neutral-50 rounded drop-shadow overflow-hidden">
       <div className="w-full h-full flex flex-col">
         <CenterSectionHeader onClick={handleShowAddForm} />
         <TasksList
