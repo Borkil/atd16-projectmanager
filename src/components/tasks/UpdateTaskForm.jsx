@@ -1,10 +1,11 @@
 "use client";
 
-import { Router, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputText from "../global/InputText.jsx";
 import { createPortal } from "react-dom";
 import RemoveModal from "../modal/RemoveModal.jsx";
+import TextArea from "../global/TextArea.jsx";
 
 // task => se sont les données d'une tache
 export default function AddTaskForm({ task }) {
@@ -72,12 +73,14 @@ export default function AddTaskForm({ task }) {
           defaultValue={name}
           onChange={(e) => setName(e.target.value)}
         />
-        <label htmlFor="description">Description</label>
-        <textarea
-          id="description"
-          name="description"
-          defaultValue={task.description}
+        <TextArea 
+        name={'description'}
+        placHolder={"En quoi consiste la tâche ?"}
+        label={'Description'}
+        defaultValue={task.description}
         />
+
+        
         <button type="submit">Modifier la tâche</button>
       </form>
       <button onClick={() => setShowModal(true)}>Supprimer la tache</button>

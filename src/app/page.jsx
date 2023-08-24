@@ -4,7 +4,7 @@ export default async function Home() {
   const data = await getData();
 
   return (
-    <main className="flex h-screen  bg-slate-200 p-2 text-gray-700">
+    <main className="flex h-screen  bg-slate-200 p-2 text-gray-700 selection:bg-neutral-200">
       <nav>je suis la sidebar a gauche</nav>
       <CenterSection data={data}/>
     </main>

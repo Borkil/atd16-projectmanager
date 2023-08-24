@@ -1,12 +1,15 @@
 "use client";
 
-import { Router, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import InputText from "../global/InputText.jsx";
+import TextArea from "../global/TextArea.jsx";
+import { SubmitButton } from "../global/Buttons.jsx";
 
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'une tâche
 // task => se sont les données d'une tache
 
 export default function AddTaskForm() {
-  const router = useRouter()
+  const router = useRouter();
   //cette fonction permet de creer une tache en bdd
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +20,6 @@ export default function AddTaskForm() {
       description: formData.get("description"),
       status: "en cours",
     };
-    
     const JSONdata = JSON.stringify(data);
 
     const options = {
@@ -31,18 +33,23 @@ export default function AddTaskForm() {
     const response = await fetch("http://atd16-api.test/api/tasks", options);
     if (response.ok) {
       console.log("ok creer en bdd");
-      router.refresh()
+      router.refresh();
     } else {
       console.log("attention pas creer en bdd");
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-sm">
-      <input type="text" id="name" name="name" placeholder='Donnez un nom à la tâche'/>
-      <label htmlFor="description">Description</label>
-      <input type="text" id="description" name="description" placeholder='En quoi consiste la tâche ?'/>
-      <button type="submit">Créer la tâche</button>
+    <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
+      <InputText name={"name"} placeHolder={"Donnez un nom à la tâche"} />
+      <TextArea
+        label={'Description'}
+        name={"description"}
+        placHolder={"En quoi consiste la tâche ?"}
+      />
+        <div className="justify-self-end">
+          <SubmitButton>Créer la tâche</SubmitButton>
+        </div>
     </form>
   );
 }

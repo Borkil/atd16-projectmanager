@@ -1,6 +1,6 @@
 import Title01 from "../global/titles.jsx";
-import PrimaryButton from "../global/PrimaryButton.jsx";
-import PlusIcons from "../icons/PlusIcons.jsx";
+import {PrimaryButton} from "../global/Buttons.jsx";
+import PlusIcons from "../icons/Icons.jsx";
 
 export default function CenterSectionHeader({ onClick }) {
   return (
