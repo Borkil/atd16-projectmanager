@@ -3,16 +3,14 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import InputText from "../global/InputText.jsx";
-import { createPortal } from "react-dom";
-import RemoveModal from "../modal/RemoveModal.jsx";
 import TextArea from "../global/TextArea.jsx";
+import { SubmitButton } from "../global/Buttons.jsx";
 
 // task => se sont les données d'une tache
 export default function AddTaskForm({ task }) {
   const [name, setName] = useState(task.name);
-  const [showModal, setShowModal] = useState(false)
-
   const router = useRouter();
+  
   //cette fonction permet de mettre a jour une tache en bdd
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,28 +44,9 @@ export default function AddTaskForm({ task }) {
     }
   };
 
-  const handleRemove = async () => {
-    const options = {
-      method: "DELETE"
-    };
-
-    const response = await fetch(
-      `http://atd16-api.test/api/tasks/${task.id}`,
-      options
-    );
-    setShowModal(false)
-    if (response.ok) {
-      console.log("ok supprimer en bdd");
-      router.refresh();
-      
-    } else {
-      console.log("attention pas supprimer en bdd");
-    }
-  }
-
   return (
     <div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4 text-sm">
+      <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
         <InputText
           name="name"
           defaultValue={name}
@@ -80,14 +59,10 @@ export default function AddTaskForm({ task }) {
         defaultValue={task.description}
         />
 
-        
-        <button type="submit">Modifier la tâche</button>
+        <div className="justify-self-end" >
+          <SubmitButton>Modifier la tâche</SubmitButton>
+        </div>
       </form>
-      <button onClick={() => setShowModal(true)}>Supprimer la tache</button>
-      {showModal && createPortal(
-        <RemoveModal onClose={()=> setShowModal(false)} onRemove={handleRemove} />,
-        document.body
-      )}
     </div>
   );
 }

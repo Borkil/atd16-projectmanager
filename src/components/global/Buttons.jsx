@@ -1,3 +1,5 @@
+import { TrashIcon, CrossIcon } from "../icons/Icons.jsx";
+
 
 export function PrimaryButton({ children, onClick}) {
   return (
@@ -22,26 +24,21 @@ export function PrimaryButton({ children, onClick}) {
   );
 }
 
-
-
-
-
 export function WarningButton({ children, onClick }) {
   return (
     <button
       className="
         rounded
-        border-2
-        border-red-400
-        p-1
-        hover:bg-red-200
+        bg-red-500
+        p-2
+        hover:bg-red-600
         text-xs
         flex
         justify-between
         items-center
         gap-2
         transition
-        text-red-400
+        text-white
         "
       onClick={onClick}
     >
@@ -55,17 +52,16 @@ export function SubmitButton({ children, onClick }) {
     <button
       className="
         rounded
-        border-2
-        border-sky-400
-        p-1
-        hover:bg-sky-200
+        p-2
+        bg-sky-500
+        hover:bg-sky-600
         text-xs
         flex
         justify-between
         items-center
         gap-2
         transition
-        text-sky-400
+        text-white
         w-full
         "
       onClick={onClick}
@@ -81,12 +77,27 @@ export function CloseButton({ children, onClick}) {
     <button
       className="
         p-1
+        hover:text-sky-500
+        transition-colors
+        "
+      onClick={onClick}
+    >
+      <CrossIcon/>
+    </button>
+  );
+}
+
+export function TrashButton({ children, onClick}) {
+  return (
+    <button
+      className="
+        p-1
         hover:text-red-500
         transition-colors
         "
       onClick={onClick}
     >
-      {children}
+      <TrashIcon/>
     </button>
   );
 }
