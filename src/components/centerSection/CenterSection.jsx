@@ -1,51 +1,64 @@
 "use client";
-import RightSidebar from "../sidebar/RightSideBar.jsx";
+
 import { useState } from "react";
 import TasksList from "../tasks/TasksList.jsx";
 import CenterSectionHeader from "./CenterSectionHeader.jsx";
+import TaskModelSidebar from "../sidebar/TaskModelSidebar.jsx";
+import RightSidebar from "../sidebar/RightSidebar.jsx";
+import ProjectModelSidebar from "../sidebar/ProjectModelSidebar.jsx";
+import ProjectsList from "../list/ProjectsList.jsx";
 
-export default function CenterSection({ data }) {
+export default function CenterSection({ data, sectionModel }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
-  const [taskDetails, setTaskDetails] = useState(" ");
+  const [dataDetails, setDataDetails] = useState(" ");
+  const [model, setModel] = useState(sectionModel);
 
-  const tasks = data["hydra:member"];
-  
+  const dataArr = data["hydra:member"];
+
+  // fonction qui ouvre et ferme la sidebar
   const handleSidebarToggle = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleShowUpdateTaskForm = (task) => {
-    setTaskDetails(task);
+  const handleShowUpdateTaskForm = (data) => {
+    setDataDetails(data);
     setIsSidebarOpen(true);
     setIsEmpty(false);
   };
 
-
   const handleShowAddForm = () => {
     setIsEmpty(true);
-    setTaskDetails("");
+    setDataDetails("");
     if (!isSidebarOpen) {
       handleSidebarToggle();
     }
   };
 
   return (
-    <section className="h-full w-full bg-neutral-50 rounded drop-shadow overflow-hidden">
+    <>
       <div className="w-full h-full flex flex-col">
-        <CenterSectionHeader onClick={handleShowAddForm} />
-        <TasksList
-          tasks={tasks}
-          onSelect={(task) => handleShowUpdateTaskForm(task)}
-        />
+        {model === 'task' ? (
+          <>
+            <CenterSectionHeader title={'Mes Taches'} onClick={handleShowAddForm} />
+            <TasksList
+              tasks={dataArr}
+              onSelect={(task) => handleShowUpdateTaskForm(task)}
+            />
+            <RightSidebar isOpen={isSidebarOpen}>
+              <TaskModelSidebar isEmpty={isEmpty} onClose={handleSidebarToggle} task={dataDetails}/>
+            </RightSidebar>
+          </>
+        ) : (
+          <>
+            <CenterSectionHeader title={'Les projets'} onClick={handleShowAddForm} />
+            <ProjectsList onSelect={(project) => handleShowUpdateTaskForm(project)} projects={dataArr}/>
+            <RightSidebar isOpen={isSidebarOpen}>
+              <ProjectModelSidebar isEmpty={isEmpty} onClose={handleSidebarToggle} project={dataDetails}/>
+            </RightSidebar>
+          </>
+        )}
       </div>
-
-      <RightSidebar
-        isOpen={isSidebarOpen}
-        isEmpty={isEmpty}
-        onClose={handleSidebarToggle}
-        task={taskDetails}
-      />
-    </section>
+    </>
   );
 }

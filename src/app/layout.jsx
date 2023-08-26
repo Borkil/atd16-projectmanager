@@ -17,7 +17,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="fr">
       <body className={poppins.className} >
-        {children}
+        <main className="flex h-screen  bg-slate-200 p-2 text-gray-700 selection:bg-neutral-200">
+          <nav>je suis la sidebar a gauche</nav>
+          <section className="h-full w-full bg-neutral-50 rounded drop-shadow overflow-hidden">
+            {children}
+          </section>
+        </main>
       </body>
     </html>
   )
