@@ -1,6 +1,6 @@
-import AddProjectForm from "../projects/AddProjectForm.jsx";
+import AddProjectForm from "../form/projects/AddProjectForm.jsx";
 import { PrimaryButton, CloseButton } from "../global/Buttons.jsx";
-import UpdateProjectForm from "../projects/UpdateProjectForm.jsx";
+import UpdateProjectForm from "../form/projects/UpdateProjectForm.jsx";
 
 // onClose => function qui doit etre mis sur un event onClick pour fermer la sidebar
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'un projet

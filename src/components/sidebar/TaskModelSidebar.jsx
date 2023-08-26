@@ -1,5 +1,5 @@
-import AddTaskForm from "../tasks/AddTaskForm.jsx";
-import UpdateTaskForm from "../tasks/UpdateTaskForm.jsx";
+import AddTaskForm from "../form/tasks/AddTaskForm.jsx";
+import UpdateTaskForm from "../form/tasks/UpdateTaskForm.jsx";
 import { PrimaryButton, CloseButton, TrashButton } from "../global/Buttons.jsx";
 import { createPortal } from "react-dom";
 import RemoveModal from "../modal/RemoveModal.jsx";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import TasksList from "../tasks/TasksList.jsx";
+import TasksList from "../list/TasksList.jsx";
 import CenterSectionHeader from "./CenterSectionHeader.jsx";
 import TaskModelSidebar from "../sidebar/TaskModelSidebar.jsx";
 import RightSidebar from "../sidebar/RightSidebar.jsx";

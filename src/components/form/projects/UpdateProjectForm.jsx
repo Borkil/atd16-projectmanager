@@ -2,16 +2,17 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import InputText from "../global/InputText.jsx";
-import TextArea from "../global/TextArea.jsx";
-import { SubmitButton } from "../global/Buttons.jsx";
+import InputText from "../../global/InputText.jsx";
+import TextArea from "../../global/TextArea.jsx";
+import { SubmitButton } from "../../global/Buttons.jsx";
+import InputDate from "../../global/InputDate.jsx";
 
-// task => se sont les données d'une tache
-export default function UpdateTaskForm({ task, onClose }) {
-  const [name, setName] = useState(task.name);
+// project => se sont les données d'un project
+export default function UpdateProjectForm({ project, onClose }) {
+  const [name, setName] = useState(project.name);
   const router = useRouter();
   
-  //cette fonction permet de mettre a jour une tache en bdd
+  //cette fonction permet de mettre à jour un projet en bdd
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -19,7 +20,7 @@ export default function UpdateTaskForm({ task, onClose }) {
     const data = {
       name: formData.get("name"),
       description: formData.get("description"),
-      status: "en cours",
+      deadline : formData.get('deadline') ? formData.get('deadline') : null
     };
 
     const JSONdata = JSON.stringify(data);
@@ -33,7 +34,7 @@ export default function UpdateTaskForm({ task, onClose }) {
     };
 
     const response = await fetch(
-      `http://atd16-api.test/api/tasks/${task.id}`,
+      `http://atd16-api.test/api/projects/${project.id}`,
       options
     );
     if (response.ok) {
@@ -51,17 +52,17 @@ export default function UpdateTaskForm({ task, onClose }) {
           name="name"
           defaultValue={name}
           onChange={(e) => setName(e.target.value)}
-          placeHolder={'Donnez un nom à la tache'}
+          placeHolder={'Donnez un nom au projet'}
         />
         <TextArea 
-        name={'description'}
-        placHolder={"En quoi consiste la tâche ?"}
-        label={'Description'}
-        defaultValue={task.description}
+          name={'description'}
+          placHolder={"En quoi consiste le projet ?"}
+          label={'Description'}
+          defaultValue={project.description}
         />
-
+        <InputDate name={'deadline'} label={'Deadline'} defaultValue={project.deadline} />
         <div className="justify-self-end" >
-          <SubmitButton>Modifier la tâche</SubmitButton>
+          <SubmitButton>Mettre à jour le projet</SubmitButton>
         </div>
       </form>
     </div>

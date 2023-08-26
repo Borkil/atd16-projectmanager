@@ -1,9 +1,9 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import InputText from "../global/InputText.jsx";
-import TextArea from "../global/TextArea.jsx";
-import { SubmitButton } from "../global/Buttons.jsx";
+import InputText from "../../global/InputText.jsx";
+import TextArea from "../../global/TextArea.jsx";
+import { SubmitButton } from "../../global/Buttons.jsx";
 
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'une tâche
 // task => se sont les données d'une tache
