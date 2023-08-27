@@ -8,13 +8,11 @@ import RightSidebar from "../sidebar/RightSidebar.jsx";
 import ProjectModelSidebar from "../sidebar/ProjectModelSidebar.jsx";
 import ProjectsList from "../list/ProjectsList.jsx";
 
-export default function CenterSection({ data, sectionModel }) {
+export default function CenterSection({ data, sectionModel, titleSection }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [dataDetails, setDataDetails] = useState(" ");
   const [model, setModel] = useState(sectionModel);
-
-  const dataArr = data["hydra:member"];
 
   // fonction qui ouvre et ferme la sidebar
   const handleSidebarToggle = () => {
@@ -38,11 +36,11 @@ export default function CenterSection({ data, sectionModel }) {
   return (
     <>
       <div className="w-full h-full flex flex-col">
+        <CenterSectionHeader title={titleSection} onClick={handleShowAddForm} />
         {model === 'task' ? (
           <>
-            <CenterSectionHeader title={'Mes Taches'} onClick={handleShowAddForm} />
             <TasksList
-              tasks={dataArr}
+              tasks={data}
               onSelect={(task) => handleShowUpdateTaskForm(task)}
             />
             <RightSidebar isOpen={isSidebarOpen}>
@@ -51,8 +49,7 @@ export default function CenterSection({ data, sectionModel }) {
           </>
         ) : (
           <>
-            <CenterSectionHeader title={'Les projets'} onClick={handleShowAddForm} />
-            <ProjectsList onSelect={(project) => handleShowUpdateTaskForm(project)} projects={dataArr}/>
+            <ProjectsList onSelect={(project) => handleShowUpdateTaskForm(project)} projects={data}/>
             <RightSidebar isOpen={isSidebarOpen}>
               <ProjectModelSidebar isEmpty={isEmpty} onClose={handleSidebarToggle} project={dataDetails}/>
             </RightSidebar>

@@ -2,9 +2,10 @@ import CenterSection from "@/components/centerSection/CenterSection.jsx";
 
 export default async function Home() {
   const data = await getData();
+  const tasks = data["hydra:member"];
   return (
     <>
-      <CenterSection  data={data} sectionModel={'task'}/>
+      <CenterSection titleSection={'Mes tâches'}  data={tasks} sectionModel={'task'}/>
     </>
   );
 }
