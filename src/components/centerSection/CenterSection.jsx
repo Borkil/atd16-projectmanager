@@ -8,7 +8,7 @@ import RightSidebar from "../sidebar/RightSidebar.jsx";
 import ProjectModelSidebar from "../sidebar/ProjectModelSidebar.jsx";
 import ProjectsList from "../list/ProjectsList.jsx";
 
-export default function CenterSection({ data, sectionModel, titleSection }) {
+export default function CenterSection({ data, sectionModel, titleSection, projects }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [dataDetails, setDataDetails] = useState(" ");
@@ -44,7 +44,7 @@ export default function CenterSection({ data, sectionModel, titleSection }) {
               onSelect={(task) => handleShowUpdateTaskForm(task)}
             />
             <RightSidebar isOpen={isSidebarOpen}>
-              <TaskModelSidebar isEmpty={isEmpty} onClose={handleSidebarToggle} task={dataDetails}/>
+              <TaskModelSidebar isEmpty={isEmpty} onClose={handleSidebarToggle} task={dataDetails} projects={projects}/>
             </RightSidebar>
           </>
         ) : (

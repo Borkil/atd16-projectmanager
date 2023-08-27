@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'une tâche
 // task => se sont les données d'une tache
 
-export default function TaskModelSidebar({ isEmpty, onClose, task }) {
+export default function TaskModelSidebar({ isEmpty, onClose, task, projects }) {
   const [showModal, setShowModal] = useState(false);
   const uniqueId = Math.random();
   const router = useRouter();
@@ -48,9 +48,9 @@ export default function TaskModelSidebar({ isEmpty, onClose, task }) {
       </div>
 
       {isEmpty ? (
-        <AddTaskForm onClose={onClose} key={uniqueId} />
+        <AddTaskForm onClose={onClose} key={uniqueId} projects={projects}/>
       ) : (
-        <UpdateTaskForm key={task.id} task={task} onClose={onClose} />
+        <UpdateTaskForm key={task.id} task={task} onClose={onClose} projects={projects} />
       )}
 
       {/* Affiche la modale */}
@@ -65,3 +65,5 @@ export default function TaskModelSidebar({ isEmpty, onClose, task }) {
     </>
   );
 }
+
+

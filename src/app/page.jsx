@@ -1,19 +1,20 @@
 import CenterSection from "@/components/centerSection/CenterSection.jsx";
 
 export default async function Home() {
-  const data = await getData();
-  const tasks = data["hydra:member"];
+  const tasksData = await getData("http://atd16-api.test/api/tasks");
+  const projectsData = await getData("http://atd16-api.test/api/projects");
+
   return (
     <>
-      <CenterSection titleSection={'Mes tâches'}  data={tasks} sectionModel={'task'}/>
+      <CenterSection titleSection={'Mes tâches'}  data={tasksData['hydra:member']} sectionModel={'task'} projects={projectsData['hydra:member']}/>
     </>
   );
 }
 
 
 //fonction qui appel les données sur l'api
-async function getData() {
-  const res = await fetch("http://atd16-api.test/api/tasks", {
+async function getData(url) {
+  const res = await fetch(url, {
     cache: "no-store",
   });
   if (!res.ok) {

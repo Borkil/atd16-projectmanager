@@ -5,9 +5,10 @@ import { useState } from "react";
 import InputText from "../../global/InputText.jsx";
 import TextArea from "../../global/TextArea.jsx";
 import { SubmitButton } from "../../global/Buttons.jsx";
+import SelectElement from "@/components/global/SelectElement.jsx";
 
 // task => se sont les données d'une tache
-export default function UpdateTaskForm({ task, onClose }) {
+export default function UpdateTaskForm({ task, projects }) {
   const [name, setName] = useState(task.name);
   const router = useRouter();
   
@@ -20,6 +21,7 @@ export default function UpdateTaskForm({ task, onClose }) {
       name: formData.get("name"),
       description: formData.get("description"),
       status: "en cours",
+      projects : formData.get('project') === '' ? null : formData.get('project') 
     };
 
     const JSONdata = JSON.stringify(data);
@@ -59,7 +61,7 @@ export default function UpdateTaskForm({ task, onClose }) {
         label={'Description'}
         defaultValue={task.description}
         />
-
+        <SelectElement elements={projects}/>
         <div className="justify-self-end" >
           <SubmitButton>Modifier la tâche</SubmitButton>
         </div>
