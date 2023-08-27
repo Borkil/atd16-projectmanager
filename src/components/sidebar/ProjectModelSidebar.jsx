@@ -1,5 +1,5 @@
 import AddProjectForm from "../form/projects/AddProjectForm.jsx";
-import { PrimaryButton, CloseButton } from "../global/Buttons.jsx";
+import {CloseButton } from "../global/Buttons.jsx";
 import UpdateProjectForm from "../form/projects/UpdateProjectForm.jsx";
 
 // onClose => function qui doit etre mis sur un event onClick pour fermer la sidebar
@@ -8,11 +8,10 @@ import UpdateProjectForm from "../form/projects/UpdateProjectForm.jsx";
 
 export default function ProjectModelSidebar({ isEmpty, onClose, project }) {
   const uniqueId = Math.random();
-
   return (
     <>
-      <div className="flex justify-between">
-        <PrimaryButton>Marquer comme terminée</PrimaryButton>
+      <div className="flex justify-end">
+
         <CloseButton onClick={onClose} />
       </div>
 

@@ -44,14 +44,14 @@ export default function AddTaskForm({onClose, projects}) {
     <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
       <InputText name={"name"} placeHolder={"Donnez un nom à la tâche"} />
       <TextArea
-        label={'Description'}
+        label={"Description"}
         name={"description"}
         placHolder={"En quoi consiste la tâche ?"}
       />
-      <SelectElement elements={projects}/>
-        <div className="justify-self-end">
-          <SubmitButton>Créer la tâche</SubmitButton>
-        </div>
+      <SelectElement elements={projects} />
+      <div className="justify-self-end">
+        <SubmitButton>Créer la tâche</SubmitButton>
+      </div>
     </form>
   );
 }

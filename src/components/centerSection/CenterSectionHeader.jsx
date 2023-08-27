@@ -1,4 +1,4 @@
-import Title01 from "../global/titles.jsx";
+import Title01 from "../global/Title.jsx";
 import {PrimaryButton} from "../global/Buttons.jsx";
 import PlusIcons from "../icons/Icons.jsx";
 

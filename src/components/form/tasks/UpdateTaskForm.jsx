@@ -8,10 +8,11 @@ import { SubmitButton } from "../../global/Buttons.jsx";
 import SelectElement from "@/components/global/SelectElement.jsx";
 
 // task => se sont les données d'une tache
+// projects => liste des projets pour l'elements select du formulaire
 export default function UpdateTaskForm({ task, projects }) {
   const [name, setName] = useState(task.name);
   const router = useRouter();
-  
+
   //cette fonction permet de mettre a jour une tache en bdd
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -61,7 +62,7 @@ export default function UpdateTaskForm({ task, projects }) {
         label={'Description'}
         defaultValue={task.description}
         />
-        <SelectElement elements={projects}/>
+        <SelectElement defaultSelect={task.projects} elements={projects}/>
         <div className="justify-self-end" >
           <SubmitButton>Modifier la tâche</SubmitButton>
         </div>
