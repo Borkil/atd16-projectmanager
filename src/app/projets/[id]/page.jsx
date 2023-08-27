@@ -1,13 +1,20 @@
-
 import CenterSection from "@/components/centerSection/CenterSection.jsx";
 
-export default async function ProjectPage({params}){
-  const project = await getData(`http://atd16-api.test/api/projects/${params.id}`)
-  const projects = await getData('http://atd16-api.test/api/projects')
+export default async function ProjectPage({ params }) {
+  const project = await getData(
+    `http://atd16-api.test/api/projects/${params.id}`
+  );
+  const projects = await getData("http://atd16-api.test/api/projects");
 
-  return(
-    <CenterSection titleSection={project.name} data={project.tasks} sectionModel={'task'} projects={projects['hydra:member']} />
-  )
+  return (
+    <CenterSection
+      titleSection={project.name}
+      data={project.tasks}
+      sectionModel={"task"}
+      projects={projects["hydra:member"]}
+      currentProject={project}
+    />
+  );
 }
 
 //fonction qui appel les données sur l'api

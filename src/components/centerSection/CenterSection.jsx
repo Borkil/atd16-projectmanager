@@ -8,7 +8,13 @@ import RightSidebar from "../sidebar/RightSidebar.jsx";
 import ProjectModelSidebar from "../sidebar/ProjectModelSidebar.jsx";
 import ProjectsList from "../list/ProjectsList.jsx";
 
-export default function CenterSection({ data, sectionModel, titleSection, projects }) {
+export default function CenterSection({
+  data,
+  sectionModel,
+  titleSection,
+  projects,
+  currentProject,
+}) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [dataDetails, setDataDetails] = useState(" ");
@@ -37,21 +43,34 @@ export default function CenterSection({ data, sectionModel, titleSection, projec
     <>
       <div className="w-full h-full flex flex-col">
         <CenterSectionHeader title={titleSection} onClick={handleShowAddForm} />
-        {model === 'task' ? (
+        {model === "task" ? (
           <>
             <TasksList
               tasks={data}
               onSelect={(task) => handleShowUpdateTaskForm(task)}
             />
             <RightSidebar isOpen={isSidebarOpen}>
-              <TaskModelSidebar isEmpty={isEmpty} onClose={handleSidebarToggle} task={dataDetails} projects={projects}/>
+              <TaskModelSidebar
+                isEmpty={isEmpty}
+                onClose={handleSidebarToggle}
+                task={dataDetails}
+                projects={projects}
+                currentProject={currentProject}
+              />
             </RightSidebar>
           </>
         ) : (
           <>
-            <ProjectsList onSelect={(project) => handleShowUpdateTaskForm(project)} projects={data}/>
+            <ProjectsList
+              onSelect={(project) => handleShowUpdateTaskForm(project)}
+              projects={data}
+            />
             <RightSidebar isOpen={isSidebarOpen}>
-              <ProjectModelSidebar isEmpty={isEmpty} onClose={handleSidebarToggle} project={dataDetails}/>
+              <ProjectModelSidebar
+                isEmpty={isEmpty}
+                onClose={handleSidebarToggle}
+                project={dataDetails}
+              />
             </RightSidebar>
           </>
         )}

@@ -6,8 +6,10 @@ import SelectElement from "@/components/global/SelectElement.jsx";
 
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'une tâche
 // task => se sont les données d'une tache
+//currentProject => le projet courrant dans une page projet,
+//                  permet de mettre une valeur par defaut a l'element select
 
-export default function AddTaskForm({onClose, projects}) {
+export default function AddTaskForm({ onClose, projects, currentProject }) {
   const router = useRouter();
   //cette fonction permet de creer une tache en bdd
   const handleSubmit = async (event) => {
@@ -18,7 +20,7 @@ export default function AddTaskForm({onClose, projects}) {
       name: formData.get("name"),
       description: formData.get("description"),
       status: "en cours",
-      projects : formData.get('project') === '' ? null : formData.get('project') 
+      projects: formData.get("project") === "" ? null : formData.get("project"),
     };
     const JSONdata = JSON.stringify(data);
 
@@ -29,9 +31,9 @@ export default function AddTaskForm({onClose, projects}) {
         "Content-Type": "application/json;charset=UTF-8",
       },
     };
-    console.log(JSONdata)
+    console.log(JSONdata);
     const response = await fetch("http://atd16-api.test/api/tasks", options);
-    onClose()
+    onClose();
     if (response.ok) {
       console.log("ok creer en bdd");
       router.refresh();
@@ -48,7 +50,7 @@ export default function AddTaskForm({onClose, projects}) {
         name={"description"}
         placHolder={"En quoi consiste la tâche ?"}
       />
-      <SelectElement elements={projects} />
+      <SelectElement defaultSelect={currentProject['@id']} elements={projects} />
       <div className="justify-self-end">
         <SubmitButton>Créer la tâche</SubmitButton>
       </div>
