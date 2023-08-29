@@ -9,9 +9,11 @@ import SelectElement from "@/components/global/SelectElement.jsx";
 
 // task => se sont les données d'une tache
 // projects => liste des projets pour l'elements select du formulaire
-export default function UpdateTaskForm({ task, projects }) {
+export default function UpdateTaskForm({ task, projects, currentProject }) {
   const [name, setName] = useState(task.name);
   const router = useRouter();
+  const defaultSelect = currentProject ? task.project : task.project && task.project['@id']
+
 
   //cette fonction permet de mettre a jour une tache en bdd
   const handleSubmit = async (event) => {
@@ -46,7 +48,7 @@ export default function UpdateTaskForm({ task, projects }) {
       console.log("attention pas modifié en bdd");
     }
   };
-
+  
   return (
     <div>
       <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
@@ -62,7 +64,7 @@ export default function UpdateTaskForm({ task, projects }) {
         label={'Description'}
         defaultValue={task.description}
         />
-        <SelectElement defaultSelect={task.projects} elements={projects}/>
+        <SelectElement defaultSelect={defaultSelect} elements={projects}/>
         <div className="justify-self-end" >
           <SubmitButton>Modifier la tâche</SubmitButton>
         </div>

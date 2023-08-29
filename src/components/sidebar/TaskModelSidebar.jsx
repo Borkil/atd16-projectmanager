@@ -50,7 +50,7 @@ export default function TaskModelSidebar({ isEmpty, onClose, task, projects, cur
       {isEmpty ? (
         <AddTaskForm onClose={onClose} key={uniqueId} projects={projects} currentProject={currentProject}/>
       ) : (
-        <UpdateTaskForm key={task.id} task={task} onClose={onClose} projects={projects} />
+        <UpdateTaskForm key={task.id} task={task} onClose={onClose} projects={projects} currentProject={currentProject} />
       )}
 
       {/* Affiche la modale */}
