@@ -4,7 +4,7 @@ export default async function NavSidebar(){
   const projects = await getData("http://atd16-api.test/api/projects")
   
   return(
-    <nav className="bg-green-100  w-1/6 text-sm flex justify-center pt-10">
+    <nav className=" w-1/6 text-sm flex justify-center pt-10">
       <ul className="flex flex-col gap-4">
         <li><Link href={'/'}>Mes tâches</Link></li>
         <li><Link href={'/projets'}>Les projets</Link></li>
