@@ -1,5 +1,6 @@
 import './globals.css'
 import { Poppins } from 'next/font/google'
+import NavSidebar from '@/components/sidebar/NavSidebar.jsx'
 
 
 const poppins = Poppins({
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
     <html lang="fr">
       <body className={poppins.className} >
         <main className="flex h-screen  bg-slate-200 p-2 text-gray-700 selection:bg-neutral-200">
-          <nav>je suis la sidebar a gauche</nav>
+          <NavSidebar/>
           <section className="h-full w-full bg-neutral-50 rounded drop-shadow overflow-hidden">
             {children}
           </section>
