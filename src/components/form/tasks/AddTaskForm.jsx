@@ -11,6 +11,9 @@ import SelectElement from "@/components/global/SelectElement.jsx";
 
 export default function AddTaskForm({ onClose, projects, currentProject }) {
   const router = useRouter();
+
+  const defaultSelect = currentProject && currentProject['@id']
+
   //cette fonction permet de creer une tache en bdd
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -41,7 +44,7 @@ export default function AddTaskForm({ onClose, projects, currentProject }) {
       console.log("attention pas creer en bdd");
     }
   };
-
+  
   return (
     <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
       <InputText name={"name"} placeHolder={"Donnez un nom à la tâche"} />
@@ -50,7 +53,7 @@ export default function AddTaskForm({ onClose, projects, currentProject }) {
         name={"description"}
         placHolder={"En quoi consiste la tâche ?"}
       />
-      <SelectElement defaultSelect={currentProject['@id']} elements={projects} />
+      <SelectElement defaultSelect={defaultSelect} elements={projects} />
       <div className="justify-self-end">
         <SubmitButton>Créer la tâche</SubmitButton>
       </div>
