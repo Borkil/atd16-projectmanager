@@ -1,5 +1,5 @@
 import { useRouter } from "next/navigation";
-import InputText from "../../global/InputText.jsx";
+import InputName from "@/components/global/InputName.jsx";
 import TextArea from "../../global/TextArea.jsx";
 import { SubmitButton } from "../../global/Buttons.jsx";
 import SelectElement from "@/components/global/SelectElement.jsx";
@@ -47,7 +47,7 @@ export default function AddTaskForm({ onClose, projects, currentProject }) {
   
   return (
     <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
-      <InputText name={"name"} placeHolder={"Donnez un nom à la tâche"} />
+      <InputName name={"name"} placeHolder={"Donnez un nom à la tâche"} />
       <TextArea
         label={"Description"}
         name={"description"}

@@ -7,6 +7,8 @@ import TaskModelSidebar from "../sidebar/TaskModelSidebar.jsx";
 import RightSidebar from "../sidebar/RightSidebar.jsx";
 import ProjectModelSidebar from "../sidebar/ProjectModelSidebar.jsx";
 import ProjectsList from "../list/ProjectsList.jsx";
+import UsersList from "../list/UsersList.jsx";
+import UserModelSidebar from "../sidebar/UserModelSidebar.jsx";
 
 
 export default function CenterSection({
@@ -60,7 +62,7 @@ export default function CenterSection({
               />
             </RightSidebar>
           </>
-        ) : (
+        ) : model === "projects" ? (
           <>
             <ProjectsList
               onSelect={(project) => handleShowUpdateTaskForm(project)}
@@ -71,6 +73,16 @@ export default function CenterSection({
                 isEmpty={isEmpty}
                 onClose={handleSidebarToggle}
                 project={dataDetails}
+              />
+            </RightSidebar>
+          </>
+        ) : (
+          <>
+            <UsersList users={data} />
+            <RightSidebar isOpen={isSidebarOpen}>
+              <UserModelSidebar
+                isEmpty={isEmpty}
+                onClose={handleSidebarToggle}
               />
             </RightSidebar>
           </>

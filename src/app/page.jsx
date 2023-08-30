@@ -1,7 +1,7 @@
 import CenterSection from "@/components/centerSection/CenterSection.jsx";
 import { getServerSession } from "next-auth/next";
 import { redirect } from "next/navigation.js";
-import { authOptions } from "./api/auth/[...nextauth]/route.js";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);

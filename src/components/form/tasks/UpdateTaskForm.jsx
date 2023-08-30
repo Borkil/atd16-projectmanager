@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import InputText from "../../global/InputText.jsx";
+import InputName from "@/components/global/InputName.jsx";
 import TextArea from "../../global/TextArea.jsx";
 import { SubmitButton } from "../../global/Buttons.jsx";
 import SelectElement from "@/components/global/SelectElement.jsx";
@@ -52,7 +52,7 @@ export default function UpdateTaskForm({ task, projects, currentProject }) {
   return (
     <div>
       <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
-        <InputText
+        <InputName
           name="name"
           defaultValue={name}
           onChange={(e) => setName(e.target.value)}

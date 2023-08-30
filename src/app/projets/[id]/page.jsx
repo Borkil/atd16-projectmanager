@@ -1,4 +1,7 @@
 import CenterSection from "@/components/centerSection/CenterSection.jsx";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
+import { redirect } from "next/navigation.js";
 
 export default async function ProjectPage({ params }) {
   const session = await getServerSession(authOptions);
@@ -10,7 +13,7 @@ export default async function ProjectPage({ params }) {
     session.user.token
   );
   
-  const projects = await getData("http://atd16-api.test/api/projects");
+  const projects = await getData("http://atd16-api.test/api/projects", session.user.token);
 
   return (
     <CenterSection

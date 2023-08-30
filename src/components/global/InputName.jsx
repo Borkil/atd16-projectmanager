@@ -1,21 +1,18 @@
 
-export default function InputText({name, defaultValue, onChange, placeHolder, type, id}){
+export default function InputName({name, defaultValue, onChange, placeHolder}){
   return(
     <input
-      type={type}
       name={name}
-      id={id}
       value={defaultValue}
       onChange={onChange}
       placeholder={placeHolder}
       className="
-        text-md
-        font-medium
+        text-lg
+        font-semibold
         p-1
         rounded
-        outline
-        outline-2
-        outline-neutral-400
+        hover:outline-none
+        hover:outline-neutral-400
         focus:outline-sky-500
       "
     />

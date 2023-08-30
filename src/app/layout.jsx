@@ -1,10 +1,7 @@
 import "./globals.css";
 import { Poppins } from "next/font/google";
 import NavSidebar from "@/components/sidebar/NavSidebar.jsx";
-import NextAuthSessionProvider from "./providers/sessionProvider.jsx";
-
-
-
+import NextAuthSessionProvider from "../providers/sessionProvider.jsx";
 
 const poppins = Poppins({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
@@ -18,7 +15,6 @@ export const metadata = {
 };
 
 export  default async function RootLayout({ children }) {
-  
 
   return (
     <html lang="fr">

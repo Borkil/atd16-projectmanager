@@ -5,6 +5,7 @@ import InputText from "../../global/InputText.jsx";
 import TextArea from "../../global/TextArea.jsx";
 import { SubmitButton } from "../../global/Buttons.jsx";
 import InputDate from "../../global/InputDate.jsx";
+import InputName from "@/components/global/InputName.jsx";
 
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'un projet
 // project => se sont les données d'une tache
@@ -21,7 +22,7 @@ export default function AddProjectForm({ onClose }) {
       description: formData.get("description"),
       status: "en cours",
       deadline : formData.get('deadline') ? formData.get('deadline') : null
-    };
+    }
     const JSONdata = JSON.stringify(data);
 
     const options = {
@@ -44,7 +45,7 @@ export default function AddProjectForm({ onClose }) {
 
   return (
     <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
-      <InputText name={"name"} placeHolder={"Donnez un nom au projet"} />
+      <InputName name={"name"} placeHolder={"Donnez un nom au projet"} />
       <TextArea
         label={"Description"}
         name={"description"}
