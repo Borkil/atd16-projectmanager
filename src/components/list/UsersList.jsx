@@ -1,4 +1,4 @@
-export default function UsersList({users}){
+export default function UsersList({users, onSelect}){
   return(
     <table className="table-fixed bg-green-100">
       <thead>
@@ -10,7 +10,7 @@ export default function UsersList({users}){
       </thead>
       <tbody>
         {users['hydra:member'].map((user)=>(
-          <tr key={user.id}>
+          <tr key={user.id} onClick={()=> onSelect(user)}>
             <td>{user.firstname}</td>
             <td>{user.lastname}</td>
             <td>{user.email}</td>

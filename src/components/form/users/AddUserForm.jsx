@@ -40,19 +40,19 @@ export default function AddUserForm({ onClose }) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-      <div className="flex gap-4 bg-green-100 items-center ">
+      <div className="flex gap-4 items-center ">
         <LabelInput htmlFor="firstname">Prénom</LabelInput>
         <InputText name={"firstname"} type={"text"} id={"firstname"} />
       </div>
-      <div className="flex gap-4 bg-green-100 items-center ">
+      <div className="flex gap-4 items-center ">
         <LabelInput htmlFor="lastname">Nom</LabelInput>
         <InputText name={"lastname"} type={"text"} id="lastname" />
       </div>
-      <div className="flex gap-4 bg-green-100 items-center ">
+      <div className="flex gap-4 items-center ">
         <LabelInput htmlFor="email">Email</LabelInput>
         <InputText name={"email"} type={"email"} id="email" />
       </div>
-      <div className="flex gap-4 bg-green-100 items-center ">
+      <div className="flex gap-4 items-center ">
         <LabelInput htmlFor="plainpassword">password</LabelInput>
         <InputText
           name={"plainpassword"}

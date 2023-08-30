@@ -1,12 +1,17 @@
+'use client';
+
+import { useState } from "react";
 
 export default function InputText({name, defaultValue, onChange, placeHolder, type, id}){
+  const [value, setValue] = useState(defaultValue)
+
   return(
     <input
       type={type}
       name={name}
       id={id}
-      value={defaultValue}
-      onChange={onChange}
+      onChange={e => setValue(e.target.value)}
+      defaultValue={value}
       placeholder={placeHolder}
       className="
         text-md

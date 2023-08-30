@@ -6,7 +6,7 @@ export default function RightSidebar({ isOpen, children }) {
       ${!isOpen ? "translate-x-96 opacity-0" : "translate-x-0 opacity-1"}
       drop-shadow-md
       bg-white
-      w-1/4
+      w-1/2
       rounded
       flex
       flex-col
@@ -18,7 +18,6 @@ export default function RightSidebar({ isOpen, children }) {
       top-0
       h-full
       p-4
-      md:w-1/3
       `}
     >
       {children}

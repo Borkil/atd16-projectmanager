@@ -10,7 +10,6 @@ import ProjectsList from "../list/ProjectsList.jsx";
 import UsersList from "../list/UsersList.jsx";
 import UserModelSidebar from "../sidebar/UserModelSidebar.jsx";
 
-
 export default function CenterSection({
   data,
   sectionModel,
@@ -28,7 +27,7 @@ export default function CenterSection({
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const handleShowUpdateTaskForm = (data) => {
+  const handleShowUpdateForm = (data) => {
     setDataDetails(data);
     setIsSidebarOpen(true);
     setIsEmpty(false);
@@ -50,7 +49,7 @@ export default function CenterSection({
           <>
             <TasksList
               tasks={data}
-              onSelect={(task) => handleShowUpdateTaskForm(task)}
+              onSelect={(task) => handleShowUpdateForm(task)}
             />
             <RightSidebar isOpen={isSidebarOpen}>
               <TaskModelSidebar
@@ -65,8 +64,8 @@ export default function CenterSection({
         ) : model === "projects" ? (
           <>
             <ProjectsList
-              onSelect={(project) => handleShowUpdateTaskForm(project)}
               projects={data}
+              onSelect={(project) => handleShowUpdateForm(project)}
             />
             <RightSidebar isOpen={isSidebarOpen}>
               <ProjectModelSidebar
@@ -78,11 +77,15 @@ export default function CenterSection({
           </>
         ) : (
           <>
-            <UsersList users={data} />
+            <UsersList
+              users={data}
+              onSelect={(user) => handleShowUpdateForm(user)}
+            />
             <RightSidebar isOpen={isSidebarOpen}>
               <UserModelSidebar
                 isEmpty={isEmpty}
                 onClose={handleSidebarToggle}
+                user={dataDetails}
               />
             </RightSidebar>
           </>
