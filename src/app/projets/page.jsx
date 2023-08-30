@@ -1,7 +1,16 @@
 import CenterSection from "@/components/centerSection/CenterSection.jsx"
 
 export default async function Projets(){
-  const data = await getData();
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+
+  const data = await getData(
+    "http://atd16-api.test/api/projects",
+    session.user.token
+  );
+
   const projects = data["hydra:member"];
   return(
     <>
@@ -12,9 +21,12 @@ export default async function Projets(){
 
 
 //fonction qui appel les données sur l'api
-async function getData() {
-  const res = await fetch("http://atd16-api.test/api/projects", {
+async function getData(url, token) {
+  const res = await fetch(url, {
     cache: "no-store",
+    headers: {
+      Authorization: `Bearer ${token} `,
+    },
   });
   if (!res.ok) {
     throw new error("Failed to fetch data");

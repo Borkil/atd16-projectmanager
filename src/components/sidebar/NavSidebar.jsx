@@ -1,10 +1,12 @@
 import Link from "next/link.js";
+import SignOutButton from "../global/SignOutButton.jsx";
 
 export default async function NavSidebar(){
   const projects = await getData("http://atd16-api.test/api/projects")
   
   return(
-    <nav className=" w-1/6 text-sm flex justify-center pt-10">
+    <nav className=" w-1/6 text-sm flex flex-col pt-10">
+      <SignOutButton>Se déconnecter</SignOutButton>
       <ul className="flex flex-col gap-4">
         <li><Link href={'/'}>Mes tâches</Link></li>
         <li><Link href={'/projets'}>Les projets</Link></li>
