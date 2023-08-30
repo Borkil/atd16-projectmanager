@@ -1,3 +1,5 @@
+'use client';
+
 import AddTaskForm from "../form/tasks/AddTaskForm.jsx";
 import UpdateTaskForm from "../form/tasks/UpdateTaskForm.jsx";
 import { PrimaryButton, CloseButton, TrashButton } from "../global/Buttons.jsx";
@@ -44,6 +46,7 @@ export default function TaskModelSidebar({
 
   return (
     <>
+      {/* header de la sidebar */}
       <div className="flex justify-between">
         <PrimaryButton>Marquer comme terminée</PrimaryButton>
         <div className="flex gap-2">
@@ -54,6 +57,7 @@ export default function TaskModelSidebar({
         </div>
       </div>
 
+      {/* controle l'affichage entre un formulaire d'ajout et un formulaire de mise à jour */}
       {isEmpty ? (
         <AddTaskForm
           onClose={onClose}
@@ -74,12 +78,14 @@ export default function TaskModelSidebar({
         />
       )}
 
-      {/* Affiche la modale */}
+      {/* Affiche la modale de confirmation de suppression*/}
       {showModal &&
         createPortal(
           <RemoveModal
             onClose={() => setShowModal(false)}
             onRemove={handleRemove}
+            title={'Supprimer définitivement la tâche?'}
+            body={'Ceci supprimera définitevement la tâche. Elle ne sera plus accessible par quicomque, vous y compris. Cette action est irréversible.'}
           />,
           document.body
         )}
