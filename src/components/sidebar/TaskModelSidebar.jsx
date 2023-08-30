@@ -6,12 +6,19 @@ import RemoveModal from "../modal/RemoveModal.jsx";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-
 // onClose => function qui doit etre mis sur un event onClick pour fermer la sidebar
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'une tâche
 // task => se sont les données d'une tache
 
-export default function TaskModelSidebar({ isEmpty, onClose, task, projects, currentProject }) {
+export default function TaskModelSidebar({
+  isEmpty,
+  onClose,
+  task,
+  projects,
+  currentProject,
+  currentUser,
+  users,
+}) {
   const [showModal, setShowModal] = useState(false);
   const uniqueId = Math.random();
   const router = useRouter();
@@ -24,9 +31,9 @@ export default function TaskModelSidebar({ isEmpty, onClose, task, projects, cur
       `http://atd16-api.test/api/tasks/${task.id}`,
       options
     );
-    
+
     onClose();
-    setShowModal(false)
+    setShowModal(false);
     if (response.ok) {
       console.log("ok supprimer en bdd");
       router.refresh();
@@ -48,9 +55,23 @@ export default function TaskModelSidebar({ isEmpty, onClose, task, projects, cur
       </div>
 
       {isEmpty ? (
-        <AddTaskForm onClose={onClose} key={uniqueId} projects={projects} currentProject={currentProject}/>
+        <AddTaskForm
+          onClose={onClose}
+          key={uniqueId}
+          projects={projects}
+          currentProject={currentProject}
+          users={users}
+          currentUser={currentUser}
+        />
       ) : (
-        <UpdateTaskForm key={task.id} task={task} onClose={onClose} projects={projects} currentProject={currentProject} />
+        <UpdateTaskForm
+          key={task.id}
+          task={task}
+          onClose={onClose}
+          projects={projects}
+          currentProject={currentProject}
+          users={users}
+        />
       )}
 
       {/* Affiche la modale */}
@@ -65,5 +86,3 @@ export default function TaskModelSidebar({ isEmpty, onClose, task, projects, cur
     </>
   );
 }
-
-

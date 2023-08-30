@@ -12,15 +12,25 @@ export default async function ProjectPage({ params }) {
     `http://atd16-api.test/api/projects/${params.id}`,
     session.user.token
   );
+
+  const user = await getData(
+    "http://atd16-api.test/api/me",
+    session.user.token
+  );
   
-  const projects = await getData("http://atd16-api.test/api/projects", session.user.token);
+  const users = await getData(
+    "http://atd16-api.test/api/users",
+    session.user.token
+  );
+
 
   return (
     <CenterSection
       titleSection={project.name}
-      data={project.tasks}
+      data={project}
       sectionModel={"task"}
-      projects={projects["hydra:member"]}
+      user={user}
+      users={users["hydra:member"]}
       currentProject={project}
     />
   );

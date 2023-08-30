@@ -14,8 +14,9 @@ export default function CenterSection({
   data,
   sectionModel,
   titleSection,
-  projects,
+  user,
   currentProject,
+  users,
 }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
@@ -48,7 +49,7 @@ export default function CenterSection({
         {model === "task" ? (
           <>
             <TasksList
-              tasks={data}
+              tasks={data.tasks}
               onSelect={(task) => handleShowUpdateForm(task)}
             />
             <RightSidebar isOpen={isSidebarOpen}>
@@ -56,8 +57,10 @@ export default function CenterSection({
                 isEmpty={isEmpty}
                 onClose={handleSidebarToggle}
                 task={dataDetails}
-                projects={projects}
+                projects={user.projects}
+                users={users}
                 currentProject={currentProject}
+                currentUser={user}
               />
             </RightSidebar>
           </>

@@ -6,15 +6,18 @@ import InputName from "@/components/global/InputName.jsx";
 import TextArea from "../../global/TextArea.jsx";
 import { SubmitButton } from "../../global/Buttons.jsx";
 import SelectElement from "@/components/global/SelectElement.jsx";
+import LabelInput from "@/components/global/LabelInput.jsx";
 
 // task => se sont les données d'une tache
 // projects => liste des projets pour l'elements select du formulaire
-export default function UpdateTaskForm({ task, projects, currentProject }) {
+export default function UpdateTaskForm({ task, projects, currentProject, users }) {
   const [name, setName] = useState(task.name);
   const router = useRouter();
-  const defaultSelect = currentProject ? task.project : task.project && task.project['@id']
+  const defaultSelectProject = currentProject
+    ? task.project
+    : task.project && task.project["@id"];
 
-
+  const defaultSelectUser = task.owner
   //cette fonction permet de mettre a jour une tache en bdd
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,7 +27,8 @@ export default function UpdateTaskForm({ task, projects, currentProject }) {
       name: formData.get("name"),
       description: formData.get("description"),
       status: "en cours",
-      projects : formData.get('project') === '' ? null : formData.get('project') 
+      projects: formData.get("project") === "" ? null : formData.get("project"),
+      owner: formData.get("owner")
     };
 
     const JSONdata = JSON.stringify(data);
@@ -48,7 +52,7 @@ export default function UpdateTaskForm({ task, projects, currentProject }) {
       console.log("attention pas modifié en bdd");
     }
   };
-  
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
@@ -56,16 +60,32 @@ export default function UpdateTaskForm({ task, projects, currentProject }) {
           name="name"
           defaultValue={name}
           onChange={(e) => setName(e.target.value)}
-          placeHolder={'Donnez un nom à la tache'}
+          placeHolder={"Donnez un nom à la tache"}
         />
-        <TextArea 
-        name={'description'}
-        placHolder={"En quoi consiste la tâche ?"}
-        label={'Description'}
-        defaultValue={task.description}
+        <TextArea
+          name={"description"}
+          placHolder={"En quoi consiste la tâche ?"}
+          label={"Description"}
+          defaultValue={task.description}
         />
-        <SelectElement defaultSelect={defaultSelect} elements={projects}/>
-        <div className="justify-self-end" >
+        <LabelInput htmlFor="project">Choisir un projet</LabelInput>
+        <SelectElement
+          name="project"
+          defaultSelect={defaultSelectProject}
+          elements={projects}
+        >
+          --choisir un projet--
+        </SelectElement>
+
+        <LabelInput htmlFor="owner">Choisir un propriétaire</LabelInput>
+        <SelectElement
+          name="owner"
+          defaultSelect={defaultSelectUser}
+          elements={users}
+        >
+          --choisir un un propriétaire--
+        </SelectElement>
+        <div className="justify-self-end">
           <SubmitButton>Modifier la tâche</SubmitButton>
         </div>
       </form>

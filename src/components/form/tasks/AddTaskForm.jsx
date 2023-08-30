@@ -3,16 +3,26 @@ import InputName from "@/components/global/InputName.jsx";
 import TextArea from "../../global/TextArea.jsx";
 import { SubmitButton } from "../../global/Buttons.jsx";
 import SelectElement from "@/components/global/SelectElement.jsx";
+import LabelInput from "@/components/global/LabelInput.jsx";
 
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'une tâche
 // task => se sont les données d'une tache
 //currentProject => le projet courrant dans une page projet,
 //                  permet de mettre une valeur par defaut a l'element select
 
-export default function AddTaskForm({ onClose, projects, currentProject }) {
+export default function AddTaskForm({
+  onClose,
+  projects,
+  currentProject,
+  currentUser,
+  users,
+}) {
   const router = useRouter();
 
-  const defaultSelect = currentProject && currentProject['@id']
+  const defaultSelectProject = currentProject && currentProject["@id"];
+
+  const defaultSelectUser = `/api/users/${currentUser.id}`
+
 
   //cette fonction permet de creer une tache en bdd
   const handleSubmit = async (event) => {
@@ -24,6 +34,7 @@ export default function AddTaskForm({ onClose, projects, currentProject }) {
       description: formData.get("description"),
       status: "en cours",
       projects: formData.get("project") === "" ? null : formData.get("project"),
+      owner: formData.get("owner")
     };
     const JSONdata = JSON.stringify(data);
 
@@ -34,7 +45,7 @@ export default function AddTaskForm({ onClose, projects, currentProject }) {
         "Content-Type": "application/json;charset=UTF-8",
       },
     };
-    console.log(JSONdata);
+
     const response = await fetch("http://atd16-api.test/api/tasks", options);
     onClose();
     if (response.ok) {
@@ -44,16 +55,35 @@ export default function AddTaskForm({ onClose, projects, currentProject }) {
       console.log("attention pas creer en bdd");
     }
   };
-  
+
   return (
     <form onSubmit={handleSubmit} className="grid gap-4 text-sm">
       <InputName name={"name"} placeHolder={"Donnez un nom à la tâche"} />
+
       <TextArea
         label={"Description"}
         name={"description"}
         placHolder={"En quoi consiste la tâche ?"}
       />
-      <SelectElement defaultSelect={defaultSelect} elements={projects} />
+
+      <LabelInput htmlFor="project">Choisir un projet</LabelInput>
+      <SelectElement
+        name="project"
+        defaultSelect={defaultSelectProject}
+        elements={projects}
+      >
+        --choisir un projet--
+      </SelectElement>
+
+      <LabelInput htmlFor="owner">Choisir un propriétaire</LabelInput>
+      <SelectElement
+        name="owner"
+        defaultSelect={defaultSelectUser}
+        elements={users}
+      >
+        --choisir un un propriétaire--
+      </SelectElement>
+
       <div className="justify-self-end">
         <SubmitButton>Créer la tâche</SubmitButton>
       </div>

@@ -1,19 +1,17 @@
-export default function SelectElement({ elements, defaultSelect }) {
+
+export default function SelectElement({ name ,elements , defaultSelect, children }) {
 
   return (
-    <>
-      <label htmlFor="selectProject">Choisir un projet</label>
-      <select name="project" id="selectProject" defaultValue={defaultSelect}>
-        <option value="">--choisir un projet--</option>
+      <select name={name} id={name} defaultValue={defaultSelect}>
+        <option value="">{children}</option>
         {elements.map((element) => (
           <option
             key={element.id}
             value={element["@id"]}
           >
-            {element.name}
+            {element.name ? element.name : `${element.firstname} ${element.lastname}`}
           </option>
         ))}
       </select>
-    </>
   );
 }

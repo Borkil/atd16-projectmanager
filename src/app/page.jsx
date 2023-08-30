@@ -13,6 +13,12 @@ export default async function Home() {
     session.user.token
   );
 
+  const users = await getData(
+    "http://atd16-api.test/api/users",
+    session.user.token
+  );
+
+
   const projectsData = await getData(
     "http://atd16-api.test/api/projects",
     session.user.token
@@ -22,7 +28,9 @@ export default async function Home() {
     <>
       <CenterSection
         titleSection={"Mes tâches"}
-        data={user["tasks"]}
+        data={user}
+        user={user}
+        users={users["hydra:member"]}
         sectionModel={"task"}
         projects={projectsData["hydra:member"]}
       />
