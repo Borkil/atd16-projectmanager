@@ -9,6 +9,11 @@ export default async function Projets(){
     redirect("/api/auth/signin");
   }
 
+  const users = await getData(
+    `${process.env.NEXT_PUBLIC_URL_API}/users`,
+    session.user.token
+  );
+
  
   const data = await getData(
     `${process.env.NEXT_PUBLIC_URL_API}/projects`,
@@ -18,7 +23,7 @@ export default async function Projets(){
   const projects = data["hydra:member"];
   return(
     <>
-      <CenterSection titleSection={'Les projets'} data={projects} sectionModel={'projects'}/>
+      <CenterSection titleSection={'Les projets'} data={projects} sectionModel={'projects'} users={users}/>
     </>
   )
 }

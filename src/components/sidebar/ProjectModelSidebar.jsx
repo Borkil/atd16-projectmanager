@@ -6,7 +6,7 @@ import UpdateProjectForm from "../form/projects/UpdateProjectForm.jsx";
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'un projet
 // project => se sont les données d'un projet
 
-export default function ProjectModelSidebar({ isEmpty, onClose, project }) {
+export default function ProjectModelSidebar({ isEmpty, onClose, project, users }) {
   const uniqueId = Math.random();
   return (
     <>
@@ -16,12 +16,13 @@ export default function ProjectModelSidebar({ isEmpty, onClose, project }) {
       </div>
 
       {isEmpty ? (
-        <AddProjectForm onClose={onClose} key={uniqueId} />
+        <AddProjectForm onClose={onClose} key={uniqueId} users={users} />
       ) : (
         <UpdateProjectForm
           key={project.id}
           project={project}
           onClose={onClose}
+          users={users}
         />
       )}
     </>

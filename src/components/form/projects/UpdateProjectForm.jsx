@@ -6,9 +6,10 @@ import InputName from "@/components/global/InputName.jsx";
 import TextArea from "../../global/TextArea.jsx";
 import { SubmitButton } from "../../global/Buttons.jsx";
 import InputDate from "../../global/InputDate.jsx";
+import SelectUpdateContributors from "@/components/global/SelectUpdateContributors.jsx";
 
 // project => se sont les données d'un project
-export default function UpdateProjectForm({ project, onClose }) {
+export default function UpdateProjectForm({ project, users }) {
   const [name, setName] = useState(project.name);
   const router = useRouter();
   
@@ -20,7 +21,8 @@ export default function UpdateProjectForm({ project, onClose }) {
     const data = {
       name: formData.get("name"),
       description: formData.get("description"),
-      deadline : formData.get('deadline') ? formData.get('deadline') : null
+      deadline : formData.get('deadline') ? formData.get('deadline') : null,
+      contributor: formData.getAll('contributor')
     };
 
     const JSONdata = JSON.stringify(data);
@@ -61,6 +63,7 @@ export default function UpdateProjectForm({ project, onClose }) {
           defaultValue={project.description}
         />
         <InputDate name={'deadline'} label={'Deadline'} defaultValue={project.deadline} />
+        <SelectUpdateContributors users={users} project={project}/>
         <div className="justify-self-end" >
           <SubmitButton>Mettre à jour le projet</SubmitButton>
         </div>

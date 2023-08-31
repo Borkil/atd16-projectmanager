@@ -76,6 +76,7 @@ export default function CenterSection({
                 isEmpty={isEmpty}
                 onClose={handleSidebarToggle}
                 project={dataDetails}
+                users={users}
               />
             </RightSidebar>
           </>

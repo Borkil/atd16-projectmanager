@@ -1,16 +1,16 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import InputText from "../../global/InputText.jsx";
 import TextArea from "../../global/TextArea.jsx";
 import { SubmitButton } from "../../global/Buttons.jsx";
 import InputDate from "../../global/InputDate.jsx";
 import InputName from "@/components/global/InputName.jsx";
+import SelectContributors from "@/components/global/SelectContributors.jsx";
 
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'un projet
 // project => se sont les données d'une tache
 
-export default function AddProjectForm({ onClose }) {
+export default function AddProjectForm({ onClose, users }) {
   const router = useRouter();
   //cette fonction permet de creer un projet en bdd
   const handleSubmit = async (event) => {
@@ -21,10 +21,11 @@ export default function AddProjectForm({ onClose }) {
       name: formData.get("name"),
       description: formData.get("description"),
       status: "en cours",
-      deadline : formData.get('deadline') ? formData.get('deadline') : null
+      deadline : formData.get('deadline') ? formData.get('deadline') : null,
+      contributor : formData.getAll('contributor')
     }
     const JSONdata = JSON.stringify(data);
-
+    
     const options = {
       method: "POST",
       body: JSONdata,
@@ -52,6 +53,7 @@ export default function AddProjectForm({ onClose }) {
         placHolder={"En quoi consiste le projet ?"}
       />
       <InputDate name={'deadline'} label={'Deadline'} />
+      <SelectContributors users={users}/>
       <div className="justify-self-end">
         <SubmitButton>Créer le projet</SubmitButton>
       </div>
