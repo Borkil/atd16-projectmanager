@@ -46,8 +46,8 @@ export default async function NavSidebar() {
         </div>
         <div className="flex flex-col gap-9">
           {user.projects.map((project) => (
-            <Link href={`/projets/${project.id}`}>
-              <NavItem key={project.id}>
+            <Link key={project.id} href={`/projets/${project.id}`}>
+              <NavItem >
                 <CubeIcon />
                 {project.name}
               </NavItem>
