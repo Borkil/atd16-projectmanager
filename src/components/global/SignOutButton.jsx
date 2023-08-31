@@ -6,10 +6,11 @@ export default function SignOutButton({children}){
   return (
     <button
       className="
-        p-1
-        rounded
-        transition-colors
-        bg-neutral-100
+        text-xs
+        underline
+        text-neutral-400
+        hover:text-neutral-700
+        transition
         "
       onClick={()=> signOut()}
     >

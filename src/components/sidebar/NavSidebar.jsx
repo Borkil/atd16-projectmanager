@@ -15,12 +15,14 @@ export default async function NavSidebar() {
   );
 
   return (
-    <nav className="text-sm flex flex-col px-1 w-1/5">
-      <div className="flex items-center gap-2">
+    <nav className="text-sm flex flex-col py-6 mx-4 w-1/5">
+      <div className="flex items-center gap-4">
         <UserInitial user={user} />
-        <h2 className="text-md font-semibold">{`${user.firstname} ${user.lastname}`}</h2>
+        <div>
+          <h2 className="font-regular">{`${user.firstname} ${user.lastname}`}</h2>
+          <SignOutButton>Se déconnecter</SignOutButton>
+        </div>
       </div>
-      <SignOutButton>Se déconnecter</SignOutButton>
       <ul className="flex flex-col gap-10 mt-10">
         <div className="flex flex-col gap-4 border-b pb-4 border-neutral-400">
           <Link href={"/"}>

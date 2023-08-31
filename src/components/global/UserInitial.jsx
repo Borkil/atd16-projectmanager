@@ -2,7 +2,7 @@
 
 export default function UserInitial({user}) {
   return (
-    <div className="bg-sky-500 rounded-full w-fit h-fit p-2 flex items-center justify-center text-md font-semibold  ">
+    <div className="bg-sky-500 rounded-full w-fit h-fit p-2 flex items-center justify-center text-sm font-semibold  ">
       {initial(user.firstname, user.lastname)}
     </div>
   )
