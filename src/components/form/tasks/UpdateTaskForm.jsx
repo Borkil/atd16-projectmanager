@@ -27,7 +27,7 @@ export default function UpdateTaskForm({ task, projects, currentProject, users }
       name: formData.get("name"),
       description: formData.get("description"),
       status: "en cours",
-      projects: formData.get("project") === "" ? null : formData.get("project"),
+      project: formData.get("project") === "" ? null : formData.get("project"),
       owner: formData.get("owner")
     };
 

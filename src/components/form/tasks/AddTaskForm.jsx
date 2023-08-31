@@ -33,11 +33,11 @@ export default function AddTaskForm({
       name: formData.get("name"),
       description: formData.get("description"),
       status: "en cours",
-      projects: formData.get("project") === "" ? null : formData.get("project"),
+      project: formData.get("project") === "" ? null : formData.get("project"),
       owner: formData.get("owner")
     };
     const JSONdata = JSON.stringify(data);
-
+    console.log(JSONdata)
     const options = {
       method: "POST",
       body: JSONdata,
