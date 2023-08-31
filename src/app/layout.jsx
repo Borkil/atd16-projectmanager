@@ -20,7 +20,7 @@ export default async function RootLayout({ children }) {
       <body className={poppins.className}>
         <NextAuthSessionProvider>
           <main className="flex h-screen bg-slate-200 p-2 text-gray-700 selection:bg-neutral-200 flex gap-2">
-            <NavSidebar />
+            {/* <NavSidebar /> */}
             <section className="h-full basis-full bg-neutral-50 rounded drop-shadow overflow-hidden">
               {children}
             </section>

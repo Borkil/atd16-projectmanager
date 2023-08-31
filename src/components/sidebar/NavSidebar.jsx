@@ -4,14 +4,15 @@ import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route.js";
 import UserInitial from "../global/UserInitial.jsx";
 
+
 export default async function NavSidebar(){
   const session = await getServerSession(authOptions);
 
-  const user = await getData(
-    `${process.env.NEXT_PUBLIC_URL_API}/me`,
-    session.user.token
-  );
-  
+    const user = await getData(
+      `${process.env.NEXT_PUBLIC_URL_API}/me`,
+      session.user.token
+    );
+
 
   return(
     <nav className="text-sm flex flex-col px-1 w-1/5">

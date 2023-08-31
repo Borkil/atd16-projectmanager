@@ -15,7 +15,7 @@ export const authOptions = {
       },
 
       async authorize(credentials, req) {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/login_check`, {
+        const res = await fetch(process.env.NEXT_PUBLIC_URL_API + "/login_check", {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
