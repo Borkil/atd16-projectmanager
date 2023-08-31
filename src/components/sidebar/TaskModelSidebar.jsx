@@ -53,7 +53,7 @@ export default function TaskModelSidebar({
   return (
     <>
       {/* header de la sidebar */}
-      <div className="flex justify-between">
+      <div className="flex ">
         {!isEmpty && task.status === "encours" ? (
           <SecondaryButton
             onClick={() => {
@@ -76,7 +76,7 @@ export default function TaskModelSidebar({
           </TaskDoneButton>
         ) : null}
 
-        <div className="flex gap-2">
+        <div className="flex grow justify-end gap-2">
           {!isEmpty && (
             <TrashButton data={task} onClick={() => setShowModal(true)} />
           )}

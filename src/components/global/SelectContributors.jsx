@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import SelectContributorElement from "./SelectContributorElement.jsx";
 
 export default function SelectContributors({ users }) {
   const [userList, setUserList] = useState([]);
@@ -15,25 +16,29 @@ export default function SelectContributors({ users }) {
 
   return (
     <>
-      <div>
-        {userList.map((user) => (
-          <p key={user.id}>{user.firstname}</p>
-        ))}
-      </div>
       <fieldset>
-        <legend>Choisi des contributeurs</legend>
-        {users["hydra:member"].map((user) => (
-          <div key={user.id}>
-            <input
-              type="checkbox"
-              id={user.id}
-              name="contributor"
-              value={user["@id"]}
+        <legend className="py-4 text-neutral-400">
+          Choisir des contributeurs
+        </legend>
+        <div className="flex flex-wrap gap-4 mb-4">
+          {userList.map((user) => (
+            <p
+              key={user.id}
+              className="bg-slate-200  px-4 py-1 shadow flex justify-center items-center rounded-full text-xs font-medium text-slate-500 "
+            >
+              {user.firstname}
+            </p>
+          ))}
+        </div>
+        <div className="grid grid-cols-1 divide-y-2 border-t-2 border-b-2 ">
+          {users["hydra:member"].map((user) => (
+            <SelectContributorElement
+              key={user.id}
+              user={user}
               onChange={() => handleToggleUserList(user)}
             />
-            <label htmlFor={user.id}>{user.firstname}</label>
-          </div>
-        ))}
+          ))}
+        </div>
       </fieldset>
     </>
   );

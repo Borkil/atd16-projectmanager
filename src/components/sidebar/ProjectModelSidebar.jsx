@@ -11,7 +11,6 @@ export default function ProjectModelSidebar({ isEmpty, onClose, project, users }
   return (
     <>
       <div className="flex justify-end">
-
         <CloseButton onClick={onClose} />
       </div>
 
