@@ -4,7 +4,6 @@ import { useState } from "react";
 import TasksList from "../list/TasksList.jsx";
 import CenterSectionHeader from "./CenterSectionHeader.jsx";
 import TaskModelSidebar from "../sidebar/TaskModelSidebar.jsx";
-import RightSidebar from "../sidebar/RightSidebar.jsx";
 import ProjectModelSidebar from "../sidebar/ProjectModelSidebar.jsx";
 import ProjectsList from "../list/ProjectsList.jsx";
 import UsersList from "../list/UsersList.jsx";
@@ -52,7 +51,7 @@ export default function CenterSection({
               tasks={data.tasks}
               onSelect={(task) => handleShowUpdateForm(task)}
             />
-            <RightSidebar isOpen={isSidebarOpen}>
+            {/* <RightSidebar isOpen={isSidebarOpen}>
               <TaskModelSidebar
                 isEmpty={isEmpty}
                 onClose={handleSidebarToggle}
@@ -62,7 +61,7 @@ export default function CenterSection({
                 currentProject={currentProject}
                 currentUser={user}
               />
-            </RightSidebar>
+            </RightSidebar> */}
           </>
         ) : model === "projects" ? (
           <>
@@ -70,13 +69,13 @@ export default function CenterSection({
               projects={data}
               onSelect={(project) => handleShowUpdateForm(project)}
             />
-            <RightSidebar isOpen={isSidebarOpen}>
+            {/* <RightSidebar isOpen={isSidebarOpen}>
               <ProjectModelSidebar
                 isEmpty={isEmpty}
                 onClose={handleSidebarToggle}
                 project={dataDetails}
               />
-            </RightSidebar>
+            </RightSidebar> */}
           </>
         ) : (
           <>
@@ -84,13 +83,13 @@ export default function CenterSection({
               users={data}
               onSelect={(user) => handleShowUpdateForm(user)}
             />
-            <RightSidebar isOpen={isSidebarOpen}>
+            {/* <RightSidebar isOpen={isSidebarOpen}>
               <UserModelSidebar
                 isEmpty={isEmpty}
                 onClose={handleSidebarToggle}
                 user={dataDetails}
               />
-            </RightSidebar>
+            </RightSidebar> */}
           </>
         )}
       </div>
