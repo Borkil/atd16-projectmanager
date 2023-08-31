@@ -7,6 +7,77 @@ export function PrimaryButton({ children, onClick}) {
       className="
         rounded
         border-2
+        p-1
+        bg-sky-500
+        hover:bg-sky-600
+        text-xs
+        flex
+        justify-between
+        items-center
+        gap-2
+        transition
+        "
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function PrimaryButtonBorder({ children, onClick}) {
+  return (
+    <button
+      className="
+        rounded
+        border-2
+        border-sky-500
+        text-sky-500
+        p-1
+        hover:bg-sky-200
+        text-xs
+        flex
+        justify-between
+        items-center
+        gap-2
+        transition
+        "
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function TaskDoneButton({ children, onClick}) {
+  return (
+    <button
+      className="
+        rounded
+        border-2
+        border-green-500
+        text-green-500
+        p-1
+        hover:bg-green-200
+        text-xs
+        flex
+        justify-between
+        items-center
+        gap-2
+        transition
+        "
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+
+export function SecondaryButton({ children, onClick}) {
+  return (
+    <button
+      className="
+        rounded
+        border-2
         border-neutral-400
         p-1
         hover:bg-neutral-200

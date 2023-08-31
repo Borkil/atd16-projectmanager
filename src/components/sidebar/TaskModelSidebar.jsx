@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
 import AddTaskForm from "../form/tasks/AddTaskForm.jsx";
 import UpdateTaskForm from "../form/tasks/UpdateTaskForm.jsx";
-import { PrimaryButton, CloseButton, TrashButton } from "../global/Buttons.jsx";
+import {
+  SecondaryButton,
+  TaskDoneButton,
+  CloseButton,
+  TrashButton,
+} from "../global/Buttons.jsx";
 import { createPortal } from "react-dom";
 import RemoveModal from "../modal/RemoveModal.jsx";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import changeStatus from "@/utils/changeStatus.js";
 
 // onClose => function qui doit etre mis sur un event onClick pour fermer la sidebar
 // isEmpty => défini si la sidebar affiche un formulaire vide ou les details d'une tâche
@@ -48,11 +54,32 @@ export default function TaskModelSidebar({
     <>
       {/* header de la sidebar */}
       <div className="flex justify-between">
-        <PrimaryButton>Marquer comme terminée</PrimaryButton>
+        {!isEmpty && task.status === "encours" ? (
+          <SecondaryButton
+            onClick={() => {
+              changeStatus(task, "done")
+              router.refresh()
+              onClose()
+            }}
+          >
+            Marquer comme terminée
+          </SecondaryButton>
+        ) : !isEmpty && task.status === "done" ? (
+          <TaskDoneButton
+            onClick={() => {
+              changeStatus(task, "encours")
+              router.refresh();
+              onClose()
+            }}
+          >
+            Cette tâche est terminée
+          </TaskDoneButton>
+        ) : null}
+
         <div className="flex gap-2">
-          {!isEmpty ? (
+          {!isEmpty && (
             <TrashButton data={task} onClick={() => setShowModal(true)} />
-          ) : null}
+          )}
           <CloseButton onClick={onClose} />
         </div>
       </div>
@@ -85,8 +112,10 @@ export default function TaskModelSidebar({
           <RemoveModal
             onClose={() => setShowModal(false)}
             onRemove={handleRemove}
-            title={'Supprimer définitivement la tâche?'}
-            body={'Ceci supprimera définitevement la tâche. Elle ne sera plus accessible par quicomque, vous y compris. Cette action est irréversible.'}
+            title={"Supprimer définitivement la tâche?"}
+            body={
+              "Ceci supprimera définitevement la tâche. Elle ne sera plus accessible par quicomque, vous y compris. Cette action est irréversible."
+            }
           />,
           document.body
         )}
