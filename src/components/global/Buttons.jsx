@@ -173,3 +173,31 @@ export function TrashButton({ children, onClick}) {
   );
 }
 
+export function AddButton({ children, onClick}) {
+  return (
+    <button
+      className="
+        p-1
+        bg-sky-500
+        text-white
+        transition-colors
+        rounded-b-lg
+        rounded-r-lg
+        w-10
+        h-9
+        flex
+        justify-center
+        items-center
+        shadow-md
+        shadow-sky-300
+        hover:bg-sky-600
+        hover:scale-110
+
+        "
+      onClick={onClick}
+    >
+      {children}
+    </button>
+  );
+}
+

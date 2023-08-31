@@ -1,0 +1,31 @@
+export default function FilterItem({onSelect, children}) {
+  return (
+    <button
+      className="
+        py-8
+        text-center
+        text-neutral-500
+        text-xs
+        font-medium
+        h-full
+        w-full
+        relative
+        after:absolute
+        after:block
+        after:bg-sky-500
+        after:w-full
+        after:h-1
+        after:-bottom-1
+        after:opacity-0
+        hover:after:opacity-100
+        cursor-pointer
+        hover:text-neutral-600
+        focus:after:opacity-100
+        focus:text-neutral-600
+        "
+      onClick={onSelect}
+    >
+      {children}
+    </button>
+  );
+}

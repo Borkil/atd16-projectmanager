@@ -9,6 +9,7 @@ import ProjectsList from "../list/ProjectsList.jsx";
 import UsersList from "../list/UsersList.jsx";
 import UserModelSidebar from "../sidebar/UserModelSidebar.jsx";
 import { RightSidebar } from "../sidebar/RightSidebar.jsx";
+import TaskListSection from "../list/TaskListSection.jsx";
 
 
 export default function CenterSection({
@@ -49,10 +50,8 @@ export default function CenterSection({
         <CenterSectionHeader title={titleSection} onClick={handleShowAddForm} />
         {model === "task" ? (
           <>
-            <TasksList
-              tasks={data.tasks}
-              onSelect={(task) => handleShowUpdateForm(task)}
-            />
+            <TaskListSection tasks={data.tasks} onSelect={(task) => handleShowUpdateForm(task)}/>
+
             <RightSidebar isOpen={isSidebarOpen}>
               <TaskModelSidebar
                 isEmpty={isEmpty}

@@ -6,7 +6,7 @@ export default function PlusIcons() {
       viewBox="0 0 24 24"
       strokeWidth={1.5}
       stroke="currentColor"
-      className="w-5 h-5"
+      className="w-6 h-6 stroke-2"
     >
       <path
         strokeLinecap="round"
