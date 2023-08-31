@@ -46,7 +46,7 @@ export default function AddTaskForm({
       },
     };
 
-    const response = await fetch("http://atd16-api.test/api/tasks", options);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/tasks`, options);
     onClose();
     if (response.ok) {
       console.log("ok creer en bdd");

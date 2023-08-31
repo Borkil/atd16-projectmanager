@@ -32,7 +32,7 @@ export default function UpdateUserForm({ user }) {
     };
 
     const response = await fetch(
-      `http://atd16-api.test/api/users/${user.id}`,
+      `${process.env.NEXT_PUBLIC_URL_API}/users/${user.id}`,
       options
     );
     if (response.ok) {

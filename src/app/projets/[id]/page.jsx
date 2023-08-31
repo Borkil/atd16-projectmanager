@@ -9,19 +9,22 @@ export default async function ProjectPage({ params }) {
     redirect("/api/auth/signin");
   }
   const project = await getData(
-    `http://atd16-api.test/api/projects/${params.id}`,
+    `${process.env.NEXT_PUBLIC_URL_API}/projects/${params.id}`,
     session.user.token
   );
 
   const user = await getData(
-    "http://atd16-api.test/api/me",
+    `${process.env.NEXT_PUBLIC_URL_API}/me`,
     session.user.token
   );
-  
+
   const users = await getData(
-    "http://atd16-api.test/api/users",
+    `${process.env.NEXT_PUBLIC_URL_API}/users`,
     session.user.token
   );
+
+
+  
 
 
   return (

@@ -33,7 +33,7 @@ export default function AddProjectForm({ onClose }) {
       },
     };
 
-    const response = await fetch("http://atd16-api.test/api/projects", options);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/projects`, options);
     onClose();
     if (response.ok) {
       console.log("ok creer en bdd");

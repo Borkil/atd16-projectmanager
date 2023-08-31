@@ -9,8 +9,9 @@ export default async function Projets(){
     redirect("/api/auth/signin");
   }
 
+ 
   const data = await getData(
-    "http://atd16-api.test/api/projects",
+    `${process.env.NEXT_PUBLIC_URL_API}/projects`,
     session.user.token
   );
 

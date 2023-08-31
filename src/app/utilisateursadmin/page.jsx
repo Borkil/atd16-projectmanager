@@ -9,10 +9,11 @@ export default async function UtilisateursAdmin(){
   if (!session) {
     redirect("/api/auth/signin");
   }
+  
   const users = await getData(
-    "http://atd16-api.test/api/users",
+    `${process.env.NEXT_PUBLIC_URL_API}/users`,
     session.user.token
-  )
+  );
 
   return(
     <>

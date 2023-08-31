@@ -34,7 +34,7 @@ export default function UpdateProjectForm({ project, onClose }) {
     };
 
     const response = await fetch(
-      `http://atd16-api.test/api/projects/${project.id}`,
+      `${process.env.NEXT_PUBLIC_URL_API}/projects/${project.id}`,
       options
     );
     if (response.ok) {

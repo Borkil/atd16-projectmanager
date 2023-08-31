@@ -30,7 +30,7 @@ export default function TaskModelSidebar({
       method: "DELETE",
     };
     const response = await fetch(
-      `http://atd16-api.test/api/tasks/${task.id}`,
+      `${process.env.NEXT_PUBLIC_URL_API}/tasks/${task.id}`,
       options
     );
 

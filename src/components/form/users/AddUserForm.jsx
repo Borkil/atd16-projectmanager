@@ -28,7 +28,7 @@ export default function AddUserForm({ onClose }) {
       },
     };
     console.log(JSONdata);
-    const response = await fetch("http://atd16-api.test/api/users", options);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_URL_API}/users`, options);
     onClose();
     if (response.ok) {
       console.log("ok creer en bdd");

@@ -8,7 +8,7 @@ export default async function NavSidebar(){
   const session = await getServerSession(authOptions);
 
   const user = await getData(
-    "http://atd16-api.test/api/me",
+    `${process.env.NEXT_PUBLIC_URL_API}/me`,
     session.user.token
   );
   

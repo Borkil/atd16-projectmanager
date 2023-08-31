@@ -42,7 +42,7 @@ export default function UpdateTaskForm({ task, projects, currentProject, users }
     };
 
     const response = await fetch(
-      `http://atd16-api.test/api/tasks/${task.id}`,
+      `${process.env.NEXT_PUBLIC_URL_API}/tasks/${task.id}`,
       options
     );
     if (response.ok) {
