@@ -1,5 +1,5 @@
 // isOpen => permet d'afficher ou cacher la sideBar. True == afficher
-export default function RightSidebar({ isOpen, children }) {
+export function RightSidebar({ isOpen, children }) {
   return (
     <div
       className={`
