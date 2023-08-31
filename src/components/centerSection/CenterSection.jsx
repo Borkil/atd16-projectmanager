@@ -8,7 +8,7 @@ import ProjectModelSidebar from "../sidebar/ProjectModelSidebar.jsx";
 import ProjectsList from "../list/ProjectsList.jsx";
 import UsersList from "../list/UsersList.jsx";
 import UserModelSidebar from "../sidebar/UserModelSidebar.jsx";
-import RightSidebar from "../sidebar/RightSidebar.jsx";
+import RightSidebar from "@/RightSidebar.jsx";
 
 export default function CenterSection({
   data,
