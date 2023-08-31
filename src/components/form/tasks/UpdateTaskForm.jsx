@@ -26,13 +26,13 @@ export default function UpdateTaskForm({ task, projects, currentProject, users ,
     const data = {
       name: formData.get("name"),
       description: formData.get("description"),
-      status: "en cours",
+      status: task.status,
       project: formData.get("project") === "" ? null : formData.get("project"),
       owner: formData.get("owner")
     };
 
     const JSONdata = JSON.stringify(data);
-
+    console.log(JSONdata)
     const options = {
       method: "PUT",
       body: JSONdata,
@@ -41,16 +41,16 @@ export default function UpdateTaskForm({ task, projects, currentProject, users ,
       },
     };
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_URL_API}/tasks/${task.id}`,
-      options
-    );
-    if (response.ok) {
-      console.log("ok mis à jour en bdd");
-      router.refresh();
-    } else {
-      console.log("attention pas modifié en bdd");
-    }
+    // const response = await fetch(
+    //   `${process.env.NEXT_PUBLIC_URL_API}/tasks/${task.id}`,
+    //   options
+    // );
+    // if (response.ok) {
+    //   console.log("ok mis à jour en bdd");
+    //   router.refresh();
+    // } else {
+    //   console.log("attention pas modifié en bdd");
+    // }
   };
 
   return (
