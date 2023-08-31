@@ -75,6 +75,7 @@ export default function TaskModelSidebar({
           projects={projects}
           currentProject={currentProject}
           users={users}
+          currentUser={currentUser}
         />
       )}
 

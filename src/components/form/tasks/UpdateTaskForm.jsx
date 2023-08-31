@@ -10,14 +10,14 @@ import LabelInput from "@/components/global/LabelInput.jsx";
 
 // task => se sont les données d'une tache
 // projects => liste des projets pour l'elements select du formulaire
-export default function UpdateTaskForm({ task, projects, currentProject, users }) {
+export default function UpdateTaskForm({ task, projects, currentProject, users , currentUser }) {
   const [name, setName] = useState(task.name);
   const router = useRouter();
   const defaultSelectProject = currentProject
     ? task.project
     : task.project && task.project["@id"];
 
-  const defaultSelectUser = task.owner
+  const defaultSelectUser = task.owner ? task.owner : `/api/users/${currentUser.id}`
   //cette fonction permet de mettre a jour une tache en bdd
   const handleSubmit = async (event) => {
     event.preventDefault();
