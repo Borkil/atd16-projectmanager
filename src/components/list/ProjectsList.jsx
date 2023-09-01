@@ -16,7 +16,7 @@ export default function ProjectsList({ projects, onSelect }) {
         <tr onClick={() => onSelect(project)} key={project.id} className="hover:bg-neutral-200 cursor-pointer ">
           <td className="truncate pr-2" >{project.name}</td>
           <td className=" flex gap-2 items-center " ><div className="bg-green-500 h-3 w-3 rounded-full"></div><div className="py-4">{project.status}</div></td>
-          <td>{formatDateToDDMMYYYY(project.deadline)}</td>
+          <td>{project.deadline && formatDateToDDMMYYYY(project.deadline)}</td>
           <td>{formatDateToDDMMYYYY(project.createdAt)}</td>
           <td >{`${project.contributor.length}`}</td>
         </tr>

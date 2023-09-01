@@ -32,7 +32,7 @@ export default function AddTaskForm({
     const data = {
       name: formData.get("name"),
       description: formData.get("description"),
-      status: "encours",
+      status: "active",
       project: formData.get("project") === "" ? null : formData.get("project"),
       owner: formData.get("owner")
     };
