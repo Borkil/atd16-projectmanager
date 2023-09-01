@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 export default function UserModelSidebar({ isEmpty, onClose, user }) {
   const [showModal, setShowModal] = useState(false);
   const uniqueId = Math.random();
+  const router= useRouter()
 
   const handleRemove = async () => {
     const options = {

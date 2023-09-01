@@ -49,7 +49,7 @@ export default async function NavSidebar() {
             <Link key={project.id} href={`/projets/${project.id}`}>
               <NavItem >
                 <CubeIcon />
-                {project.name}
+                <p className="truncate">{project.name}</p>
               </NavItem>
             </Link>
           ))}
