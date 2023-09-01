@@ -20,7 +20,7 @@ export default function AddProjectForm({ onClose, users }) {
     const data = {
       name: formData.get("name"),
       description: formData.get("description"),
-      status: "en cours",
+      status: "active",
       deadline : formData.get('deadline') ? formData.get('deadline') : null,
       contributor : formData.getAll('contributor')
     }
